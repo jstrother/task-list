@@ -18,6 +18,26 @@ r.connect({db: 'taskList'})
 		io.on('connection', function(socket) {
 			socket.on('task:client:insert', function(task) {
 				r.table('tasks').insert(task).run(connection);
-			})
+			});
+			socket.on('task:client:update', function(task) {
+				let id = task.id;
+				delete task.id;
+				r.table('tasks').get(id).update(task).run(connection);
+			});
+			socket.on('task:client:delete', function(task) {
+				let id = task.id;
+				delete task.id;
+				r.table('tasks').get(id).delete().run(connection);
+			});
+			r.table('tasks').changes({
+				includeInitial: true,
+				squash: true
+			}).run(connection)
+			.then(changefeedSocketEvents(socket, 'task'));
 		});
+		server.listen(9000);
 	})
+	.error(function(error) {
+		console.log('Error connecting to RethinkDB');
+		console.log(error);
+	});
