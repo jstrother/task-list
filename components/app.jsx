@@ -19,9 +19,7 @@ class Main extends React.Component {
 }
 
 function mapStateToProps(tasks) {
-	return {
-		tasks
-	};
+	return {tasks};
 }
 
 export default connect(mapStateToProps)(Main);

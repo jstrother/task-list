@@ -33,7 +33,8 @@ r.connect({db: 'taskList'})
 			r.table('tasks').changes({
 				includeInitial: true,
 				squash: true
-			}).run(connection)
+			})
+			.run(connection)
 			.then(changefeedSocketEvents(socket, 'task'));
 		});
 		server.listen(9000);
