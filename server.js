@@ -1,15 +1,16 @@
+// top-level back-end file
+
 const express = require('express');
 const app = express();
 const server = require('http').Server(app);
 const path = require('path');
 const io = require('socket.io')(server);
 const r = require('rethinkdb');
-
 const changefeedSocketEvents = require('./socket-events.js');
 
 app.use(express.static('public'));
 
-app.get('*', (req, res) =>{
+app.get('*', (req, res) => {
 	res.sendFile(path.join(`${__dirname}/public/index.html`));
 });
 
