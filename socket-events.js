@@ -1,6 +1,6 @@
 // imported into server.js
 
-export default (socket, entityName) => {
+module.exports = (socket, entityName) => {
 	return rows => {
 		rows.each((err, row) => {
 			if (err) {

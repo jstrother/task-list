@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<script src='/socket.io/socket.io.js'></script>
+		<script>
+			var socket = io.connect('/');
+			socket.on('task:insert', function(data) {
+				console.log('NEW', data);
+			});
+			socket.on('task:update', function(data) {
+				console.log('UPDATE', data);
+			});
+			socket.on('task:delete', function(data) {
+				console.log('DELETE', data);
+			});
+		</script>
+	</head>
+	<body>
+		Check the console! Fingers crossed!
+	</body>
+</html>
