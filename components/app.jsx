@@ -18,8 +18,10 @@ class Main extends React.Component {
 	}
 }
 
-mapStateToProps = tasks => {
-	return {tasks};
+function mapStateToProps(tasks) {
+	return {
+		tasks
+	};
 }
 
 export default connect(mapStateToProps)(Main);

@@ -12,7 +12,7 @@ const tasks = (state = [], action) => {
 			return taskIndex() < 0 ? [...state, action.task] : state;
 
 		case 'task:update':
-			let index = taskIndex();
+			var index = taskIndex();
 			if (index > -1) {
 				let updatedTask = Object.assign({}, state[index], action.task);
 				return [...state.slice(0, index), updatedTask, ...state.slice(index + 1)];
@@ -22,7 +22,7 @@ const tasks = (state = [], action) => {
 			}
 
 		case 'task:delete':
-			let index = taskIndex();
+			var index = taskIndex();
 			if (index > -1) {
 				return [...state.slice(0, index), ...state.slice(index + 1)];
 			}

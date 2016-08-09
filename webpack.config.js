@@ -7,6 +7,8 @@ module.exports = {
 		path: `${__dirname}/public`,
 		filename: 'scripts.js'
 	},
+	watch: true,
+	devtool: 'source-map',
 	module: {
 		loaders: [{
 			test: /.jsx?$/,
