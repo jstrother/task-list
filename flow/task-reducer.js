@@ -2,7 +2,7 @@
 
 const taskReducer = function(state = [], action) {
 	const taskIndex = function() {
-		return state.findIndex(thisTask => {
+		return state.findIndex(function(thisTask) {
 			return thisTask && thisTask.id === action.task.id;
 		});
 	};
