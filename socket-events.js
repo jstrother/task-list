@@ -1,8 +1,8 @@
 // imported into server.js
 
-module.exports = (socket, entityName) => {
-	return rows => {
-		rows.each((err, row) => {
+module.exports = function(socket, entityName) {
+	return function(rows) {
+		rows.each(function(err, row) {
 			if (err) {
 				return console.log(err);
 			}

@@ -29960,9 +29960,8 @@
 	}(_react2.default.Component);
 	
 	function mapStateToProps(tasks) {
-		return {
-			tasks: tasks
-		};
+		console.log(tasks);
+		return { tasks: tasks };
 	}
 	
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Main);
@@ -37065,27 +37064,25 @@
 		_inherits(Task, _React$Component);
 	
 		function Task() {
-			var _Object$getPrototypeO;
-	
-			var _temp, _this, _ret;
-	
 			_classCallCheck(this, Task);
 	
-			for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-				args[_key] = arguments[_key];
-			}
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(Task).apply(this, arguments));
+		}
 	
-			return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Task)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.handleCheck = function (task) {
+		_createClass(Task, [{
+			key: 'handleCheck',
+			value: function handleCheck(task) {
 				socket.emit('task:client:update', {
 					completed: !task.completed,
 					id: task.id
 				});
-			}, _this.handleDelete = function (task) {
+			}
+		}, {
+			key: 'handleDelete',
+			value: function handleDelete(task) {
 				socket.emit('task:client:delete', task);
-			}, _temp), _possibleConstructorReturn(_this, _ret);
-		}
-	
-		_createClass(Task, [{
+			}
+		}, {
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
@@ -44577,40 +44574,43 @@
 	
 			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AddTask).call(this, props));
 	
-			_this.handlePopoverTap = function (event) {
-				_this.setState({
+			_this.state = { open: false };
+			return _this;
+		}
+	
+		_createClass(AddTask, [{
+			key: 'handlePopoverTap',
+			value: function handlePopoverTap(event) {
+				this.setState({
 					open: true,
 					anchor: event.currentTarget
 				});
-			};
-	
-			_this.handlePopoverClose = function () {
-				_this.setState({
+			}
+		}, {
+			key: 'handlePopoverClose',
+			value: function handlePopoverClose() {
+				this.setState({
 					open: false
 				});
-			};
-	
-			_this.handleNewTaskInput = function (event) {
+			}
+		}, {
+			key: 'handleNewTaskInput',
+			value: function handleNewTaskInput(event) {
 				if (event.keyCode === 13) {
 					if (event.target.value && event.target.value.length > 0) {
 						socket.emit('task:client:insert', {
 							completed: false,
 							name: event.target.value
 						});
-						_this.handlePopoverClose();
+						this.handlePopoverClose();
 					} else {
-						_this.setState({
+						this.setState({
 							error: 'Please enter a name for this task.'
 						});
 					}
 				}
-			};
-	
-			_this.state = { open: false };
-			return _this;
-		}
-	
-		_createClass(AddTask, [{
+			}
+		}, {
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(

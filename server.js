@@ -15,31 +15,31 @@ app.get('*', function(req, res) {
 });
 
 r.connect({db: 'taskList'})
-	.then(function(connection) {
-		io.on('connection', function(socket) {
-			socket.on('task:client:insert', function(task) {
-				r.table('tasks').insert(task).run(connection);
-			});
-			socket.on('task:client:update', function(task) {
-				var id = task.id;
-				delete task.id;
-				r.table('tasks').get(id).update(task).run(connection);
-			});
-			socket.on('task:client:delete', function(task) {
-				var id = task.id;
-				delete task.id;
-				r.table('tasks').get(id).delete().run(connection);
-			});
-			r.table('tasks').changes({
-				includeInitial: true,
-				squash: true
-			})
-			.run(connection)
-			.then(changefeedSocketEvents(socket, 'task'));
+.then(function(connection) {
+	io.on('connection', function(socket) {
+		socket.on('task:client:insert', function(task) {
+			r.table('tasks').insert(task).run(connection);
 		});
-		server.listen(9000);
-	})
-	.error(function(error) {
-		console.log('Error connecting to database');
-		console.log(error);
+		socket.on('task:client:update', function(task) {
+			var id = task.id;
+			delete task.id;
+			r.table('tasks').get(id).update(task).run(connection);
+		});
+		socket.on('task:client:delete', function(task) {
+			var id = task.id;
+			delete task.id;
+			r.table('tasks').get(id).delete().run(connection);
+		});
+		r.table('tasks').changes({
+			includeInitial: true,
+			squash: true
+		})
+		.run(connection)
+		.then(changefeedSocketEvents(socket, 'task'));
 	});
+	server.listen(9000);
+})
+.error(function(error) {
+	console.log('Error connecting to database');
+	console.log(error);
+});
