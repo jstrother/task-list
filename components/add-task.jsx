@@ -16,20 +16,20 @@ export default class AddTask extends React.Component {
 		this.state = {open: false};
 	};
 
-	handlePopoverTap = event => {
+	handlePopoverTap(event) {
 		this.setState({
 			open: true,
 			anchor: event.currentTarget
 		});
 	};
 
-	handlePopoverClose = () => {
+	handlePopoverClose() {
 		this.setState({
 			open: false
 		});
 	};
 
-	handleNewTaskInput = event => {
+	handleNewTaskInput(event) {
 		if (event.keyCode === 13) {
 			if (event.target.value && event.target.value.length > 0) {
 				socket.emit('task:client:insert', {

@@ -9,14 +9,14 @@ import io from 'socket.io-client';
 const socket = io.connect('/');
 
 export default class Task extends React.Component {
-	handleCheck = task => {
+	handleCheck(task) {
 		socket.emit('task:client:update', {
 			completed: !task.completed,
 			id: task.id
 		});
 	};
 
-	handleDelete = task => {
+	handleDelete(task) {
 		socket.emit('task:client:delete', task);
 	};
 
