@@ -1,7 +1,7 @@
 // imported into reducers.js
 
-const tasks = (state = [], action) => {
-	const taskIndex = () => {
+const taskReducer = function(state = [], action) {
+	const taskIndex = function() {
 		return state.findIndex(thisTask => {
 			return thisTask && thisTask.id === action.task.id;
 		});
@@ -35,4 +35,4 @@ const tasks = (state = [], action) => {
 	}
 };
 
-export default tasks;
+export default taskReducer;

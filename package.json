@@ -4,10 +4,8 @@
   "description": "simple task list",
   "main": "scripts.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --harmony server.js",
-    "build": "webpack",
-    "lint": "eslint src"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",

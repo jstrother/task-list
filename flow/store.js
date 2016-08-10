@@ -1,6 +1,9 @@
 // imported into index.jsx
 
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import reducers from './reducers.js';
+import createLogger from 'redux-logger';
 
-export default createStore(reducers);
+const logger = createLogger();
+
+export default createStore(reducers, applyMiddleware(logger));

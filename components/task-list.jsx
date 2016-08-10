@@ -9,7 +9,7 @@ export default class TaskList extends React.Component {
 		return(
 			<Table>
 				<TableBody>
-					{this.props.tasks.map(task => <Task key={task.id} task={task} />)}
+					{this.props.tasks.map(function(task) {<Task key={task.id} task={task} />})}
 				</TableBody>
 			</Table>
 		);
