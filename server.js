@@ -1,4 +1,5 @@
-// top-level back-end file
+// server.js
+// top-level back-end
 
 const express = require('express');
 const app = express();
@@ -11,35 +12,38 @@ const changefeedSocketEvents = require('./socket-events.js');
 app.use(express.static('public'));
 
 app.get('*', function(req, res) {
-	res.sendFile(path.join(`${__dirname}/public/index.html`));
+  res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
-r.connect({db: 'taskList'})
+r.connect({ db: 'taskList' })
+
 .then(function(connection) {
-	io.on('connection', function(socket) {
+	io.on('connection', function (socket) {
+
 		socket.on('task:client:insert', function(task) {
 			r.table('tasks').insert(task).run(connection);
 		});
+
 		socket.on('task:client:update', function(task) {
-			var id = task.id;
+			let updateID = task.id;
 			delete task.id;
-			r.table('tasks').get(id).update(task).run(connection);
+			r.table('tasks').get(updateID).update(task).run(connection);
 		});
+
 		socket.on('task:client:delete', function(task) {
-			var id = task.id;
+			let deleteID = task.id;
 			delete task.id;
-			r.table('tasks').get(id).delete().run(connection);
+			r.table('tasks').get(deleteID).delete().run(connection);
 		});
-		r.table('tasks').changes({
-			includeInitial: true,
-			squash: true
-		})
-		.run(connection)
+
+		r.table('tasks').changes({ includeInitial: true, squash: true }).run(connection)
 		.then(changefeedSocketEvents(socket, 'task'));
 	});
+
 	server.listen(9000);
 })
+
 .error(function(error) {
-	console.log('Error connecting to database');
+	console.log('Error connecting to RethinkDB!');
 	console.log(error);
 });

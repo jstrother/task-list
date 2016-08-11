@@ -1,3 +1,4 @@
+// flow/actions.js
 // imported into reducers.js
 
 export const newTask = task => {

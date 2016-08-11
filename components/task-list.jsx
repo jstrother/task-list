@@ -1,15 +1,16 @@
+// components/task-list.jsx
 // imported into app.jsx
 
 import React from 'react';
-import {Table, TableBody} from 'material-ui/Table';
+import { Table, TableBody } from 'material-ui/Table';
 import Task from './task.jsx';
 
-export default class TaskList extends React.Component {
+export default class TodoList extends React.Component {
 	render() {
-		return(
+		return (
 			<Table>
 				<TableBody>
-					{this.props.tasks.map(function(task) {<Task key={task.id} task={task} />})}
+					{this.props.tasks.taskReducer.map(task => <Task key={task.id} task={task} /> )}
 				</TableBody>
 			</Table>
 		);

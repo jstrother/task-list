@@ -1,7 +1,8 @@
+// components/task.jsx
 // imported into task-list.jsx
 
 import React from 'react';
-import {TableRow, TableRowColumn} from 'material-ui/Table';
+import { TableRow, TableRowColumn } from 'material-ui/Table';
 import Checkbox from 'material-ui/Checkbox';
 import IconButton from 'material-ui/IconButton';
 import io from 'socket.io-client';
@@ -21,7 +22,7 @@ export default class Task extends React.Component {
 	};
 
 	render() {
-		return(
+		return (
 			<TableRow>
 				<TableRowColumn>
 					<Checkbox label={this.props.task.name} checked={this.props.task.completed} onCheck={this.handleCheck.bind(this, this.props.task)} />
@@ -30,6 +31,6 @@ export default class Task extends React.Component {
 					<IconButton iconClassName="fa fa-trash" onFocus={this.handleDelete.bind(this, this.props.task)} />
 				</TableRowColumn>
 			</TableRow>
-		);
+		)
 	}
 }

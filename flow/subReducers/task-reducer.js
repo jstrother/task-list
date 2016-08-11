@@ -1,9 +1,8 @@
-// flow/subReducers/task-reducer.js
 // imported into reducers.js
 
 const taskReducer = (state = [], action) => {
 	const taskIndex = () => {
-		return state.findIndex(thisTask => {
+		return state.findIndex((thisTask) => {
 			return thisTask && thisTask.id === action.task.id;
 		});
 	};
@@ -16,7 +15,7 @@ const taskReducer = (state = [], action) => {
 			var index = taskIndex();
 			if (index > -1) {
 				var updatedTask = Object.assign({}, state[index], action.task);
-				return [...state.slice(0, index), updatedTask, ...state.slice(index + 1)]
+				return [...state.slice(0, index), updatedTask, ...state.slice(index + 1)];
 			}
 			else {
 				return state;

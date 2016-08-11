@@ -1,21 +1,22 @@
+// components/index.jsx
 // top-level react component
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { Provider } from 'react-redux';
 import store from '../flow/store.js';
 import App from './app.jsx';
-import TaskListSocketListeners from '../socket-listeners/task-listener.js';
+import TodoSocketListeners from '../socket-listeners/task-listener.js';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
-TaskListSocketListeners(store);
+TodoSocketListeners(store);
 injectTapEventPlugin();
 
 ReactDOM.render(
 	<Provider store={store} >
-		<MuiThemeProvider muiTheme={getMuiTheme()} >
+		<MuiThemeProvider muiTheme={getMuiTheme()}>
 			<App />
 		</MuiThemeProvider>
 	</Provider>,

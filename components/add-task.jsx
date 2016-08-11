@@ -1,3 +1,4 @@
+// components/add-task.jsx
 // imported into app.jsx
 
 import React from 'react';
@@ -6,79 +7,75 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import io from 'socket.io-client';
 
+// Import socket and connect
+import io from 'socket.io-client';
 const socket = io.connect('/');
 
 export default class AddTask extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {open: false};
+		this.state = { open: false };
 	};
 
-	handlePopoverTap(event) {
+	handlePopoverTap = event => {
 		this.setState({
 			open: true,
 			anchor: event.currentTarget
 		});
 	};
 
-	handlePopoverClose() {
-		this.setState({
-			open: false
-		});
+	handlePopoverClose = () => {
+		this.setState({ open: false });
 	};
 
-	handleNewTaskInput(event) {
+	handleNewTaskInput = event => {
 		if (event.keyCode === 13) {
 			if (event.target.value && event.target.value.length > 0) {
+
 				socket.emit('task:client:insert', {
 					completed: false,
 					name: event.target.value
 				});
+
 				this.handlePopoverClose();
 			}
 			else {
-				this.setState({
-					error: 'Please enter a name for this task.'
-				});
+				this.setState({ error: 'Tasks must have a name'});
 			}
 		}
 	};
 
 	render() {
-		return(
+		return (
 			<div>
 				<Popover
-					open={this.state.open}
-					anchorEl={this.state.anchor}
+					open = { this.state.open }
+					anchorEl = { this.state.anchor }
 					anchorOrigin={{
-						horizontal: 'left',
-						vertical: 'bottom'
+						horizontal: 'right',
+						vertical: 'top'
 					}}
 					targetOrigin={{
 						horizontal: 'left',
 						vertical: 'bottom'
 					}}
-					onRequestClose={this.handlePopoverClose} >
+					onRequestClose={this.handlePopoverClose}>
 					<TextField
 						style={{
-							margin: '10'
+							margin: 20
 						}}
-						hintText="New Task"
-						errorText={this.state.error}
+						hintText="new task"
+						errorText={ this.state.error }
 						onKeyDown={this.handleNewTaskInput} />
 				</Popover>
-				<FloatingActionButton
-					onTouchTap={this.handlePopoverTap}
-					style={{
-						position: 'fixed',
-						bottom: 10,
-						right: 10
-					}} >
+				<FloatingActionButton onTouchTap={this.handlePopoverTap} style={{
+					position: 'fixed',
+					bottom: 20, right: 20
+				}}>
 					<ContentAdd />
 				</FloatingActionButton>
 			</div>
-		);
+		)
 	};
 }
