@@ -8,6 +8,7 @@ const path = require('path');
 const io = require('socket.io')(server);
 const r = require('rethinkdb');
 const changefeedSocketEvents = require('./socket-events.js');
+const PORT = 'amazon variable' || 9000;
 
 app.use(express.static('public'));
 
@@ -40,7 +41,7 @@ r.connect({ db: 'taskList' })
 		.then(changefeedSocketEvents(socket, 'task'));
 	});
 
-	server.listen(9000);
+	server.listen(PORT);
 })
 
 .error(function(error) {
