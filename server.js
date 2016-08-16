@@ -8,7 +8,7 @@ const path = require('path');
 const io = require('socket.io')(server);
 const r = require('rethinkdb');
 const changefeedSocketEvents = require('./socket-events.js');
-const PORT = 'amazon variable' || 9000;
+const PORT = 9000;
 
 app.use(express.static('public'));
 
