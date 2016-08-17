@@ -8,7 +8,7 @@ const path = require('path');
 const io = require('socket.io')(server);
 const r = require('rethinkdb');
 const changefeedSocketEvents = require('./socket-events.js');
-const PORT = 9000;
+const PORT = 80;
 
 app.use(express.static('public'));
 
@@ -16,7 +16,9 @@ app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
-r.connect({ db: 'taskList' })
+r.connect({ 
+	host: '52.42.203.151',
+	db: 'taskList' })
 
 .then(function(connection) {
 	io.on('connection', function (socket) {
