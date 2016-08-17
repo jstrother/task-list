@@ -16,9 +16,7 @@ app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
-r.connect({ 
-	host: '52.42.203.151',
-	db: 'taskList' })
+r.connect({ db: 'taskList' })
 
 .then(function(connection) {
 	io.on('connection', function (socket) {
