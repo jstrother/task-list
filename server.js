@@ -17,7 +17,9 @@ app.get('*', function(req, res) {
 });
 
 r.connect({ 
-	host: 'ec2-52-42-203-151.us-west-2.compute.amazonaws.com',
+	host: '52.42.203.151',
+	user: 'rethinkdb',
+	password: 'dr8u$t3rD0g18', // good opportunity for b-crypt
 	db: 'taskList' })
 
 .then(function(connection) {
