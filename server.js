@@ -13,11 +13,11 @@ const PORT = 80;
 app.use(express.static('public'));
 
 app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/public/index.html'));
+  res.sendFile(path.join(__dirname + '/public/task_index.html'));
 });
 
 r.connect({ 
-	host: '172.31.28.148',
+	host: 'ec2-52-42-203-151.us-west-2.compute.amazonaws.com',
 	db: 'taskList' })
 
 .then(function(connection) {
