@@ -8,18 +8,18 @@ const path = require('path');
 const io = require('socket.io')(server);
 const r = require('rethinkdb');
 const changefeedSocketEvents = require('./socket-events.js');
-const PORT = 80;
+const PORT = 9000;
 
 app.use(express.static('public'));
 
 app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/public/task_index.html'));
+  res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
 r.connect({ 
-	host: '52.42.203.151',
-	user: 'rethinkdb',
-	password: 'dr8u$t3rD0g18', // good opportunity for b-crypt
+	// host: '52.42.203.151',
+	// user: 'rethinkdb',
+	// password: 'dr8u$t3rD0g18', // good opportunity for b-crypt
 	db: 'taskList' })
 
 .then(function(connection) {
