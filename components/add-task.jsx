@@ -7,10 +7,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 import io from 'socket.io-client';
-
-injectTapEventPlugin();
 
 const socket = io.connect('/');
 
