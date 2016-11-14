@@ -1,6 +1,8 @@
 // server.js
 // top-level back-end
 
+'use strict'
+
 const express = require('express');
 const app = express();
 const server = require('http').Server(app);
@@ -17,10 +19,9 @@ app.get('*', function(req, res) {
 });
 
 r.connect({ 
-	// host: '52.42.203.151',
-	// user: 'rethinkdb',
-	// password: 'dr8u$t3rD0g18', // good opportunity for b-crypt
-	db: 'taskList' })
+	user: 'admin',
+	db: 'taskList' 
+})
 
 .then(function(connection) {
 	io.on('connection', function (socket) {
