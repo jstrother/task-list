@@ -16,11 +16,7 @@ app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
-r.connect({ 
-	// host: '52.42.203.151',
-	// user: 'rethinkdb',
-	// password: 'dr8u$t3rD0g18', // good opportunity for b-crypt
-	db: 'taskList' })
+r.connect({ db: 'taskList' })
 
 .then(function(connection) {
 	io.on('connection', function (socket) {

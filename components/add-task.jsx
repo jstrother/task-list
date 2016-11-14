@@ -15,7 +15,7 @@ export default class AddTask extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { open: false };
-	};
+	}
 
 	handlePopoverTap = event => {
 		this.setState({
@@ -65,6 +65,7 @@ export default class AddTask extends React.Component {
 							margin: 20
 						}}
 						hintText="new task"
+						autofocus="autofocus"
 						errorText={ this.state.error }
 						onKeyDown={this.handleNewTaskInput} />
 				</Popover>
@@ -75,6 +76,6 @@ export default class AddTask extends React.Component {
 					<ContentAdd />
 				</FloatingActionButton>
 			</div>
-		)
-	};
+		);
+	}
 }
