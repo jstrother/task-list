@@ -12,7 +12,7 @@ class Main extends React.Component {
 	render() {
 		return (
 			<div>
-				<AppBar title="Task List"/>
+				<AppBar title="Task List" />
 				<TaskList tasks={this.props.tasks} />
 				<AddTask />
 			</div>
