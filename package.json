@@ -4,7 +4,7 @@
   "description": "simple task list",
   "main": "scripts.js",
   "scripts": {
-    "start": "nodemon --harmony server.js",
+    "serve": "nodemon --harmony server.js",
     "build": "webpack"
   },
   "repository": {
