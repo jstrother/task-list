@@ -64,6 +64,7 @@ export default class AddTask extends React.Component {
 						style={{
 							margin: 20
 						}}
+						autofocus="autofocus"
 						hintText="new task"
 						autofocus="autofocus"
 						errorText={ this.state.error }

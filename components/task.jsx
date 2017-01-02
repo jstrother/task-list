@@ -15,11 +15,11 @@ export default class Task extends React.Component {
 			completed: !task.completed,
 			id: task.id
 		});
-	};
+	}
 
 	handleDelete(task) {
 		socket.emit('task:client:delete', task);
-	};
+	}
 
 	render() {
 		return (
@@ -31,6 +31,6 @@ export default class Task extends React.Component {
 					<IconButton iconClassName="fa fa-trash" onFocus={this.handleDelete.bind(this, this.props.task)} />
 				</TableRowColumn>
 			</TableRow>
-		)
+		);
 	}
 }
