@@ -18,15 +18,10 @@ app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
-<<<<<<< HEAD
-r.connect({ db: 'taskList' })
-=======
 r.connect({ 
 	user: 'admin',
 	db: 'taskList' 
 })
->>>>>>> af25efe884bfd9aaa0ecdfb5aacebb4b0833436e
-
 .then(function(connection) {
 	io.on('connection', function (socket) {
 
